@@ -1,0 +1,36 @@
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext, Settings, load_index_from_storage
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.llms.ollama import Ollama
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+VECTOR_STORAGE_PATH = os.getenv("VECTOR_STORAGE_PATH")
+
+def recreate_vector_store():
+    # Load documents from the specified directory
+    documents = SimpleDirectoryReader(VECTOR_STORAGE_PATH).load_data()
+
+    # Configure embedding model
+    Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
+
+    # Configure LLM
+    Settings.llm = Ollama(model="llama3", request_timeout=360.0)
+
+    # Create index from documents
+    storage_context = StorageContext.from_defaults(persist_dir="index_storage")
+    index = VectorStoreIndex.from_documents(documents, storage_context=storage_context)
+
+    # Persist the index to the specified directory
+    index.storage_context.persist()
+
+    return True
+
+def load_vector_store():
+    # rebuild storage context
+    storage_context = StorageContext.from_defaults(persist_dir=VECTOR_STORAGE_PATH)
+
+    # load index
+    index = load_index_from_storage(storage_context)
+
+    return index

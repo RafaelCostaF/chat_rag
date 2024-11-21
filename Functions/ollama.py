@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from dotenv import load_dotenv
 
@@ -38,3 +39,24 @@ def query_ollama(prompt: str):
         return response.json()
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
+    
+
+def extract_text_from_json(response_text):
+    """
+    Extrai o texto da resposta JSON que contém 
+    múltiplos objetos JSON separados por novas linhas.
+    """
+    lines = response_text.splitlines()
+    full_text = []
+
+    for line in lines:
+        try:
+            # Tenta carregar cada linha como um JSON
+            json_obj = json.loads(line)
+            # Adiciona o texto da resposta ao resultado
+            if 'response' in json_obj:
+                full_text.append(json_obj['response'])
+        except json.JSONDecodeError as e:
+            print(f"Erro ao processar parte do JSON: {e} na linha: {line}")
+
+    return ''.join(full_text)
