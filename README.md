@@ -1,3 +1,4 @@
+# IN PROGRESS.........
 # Install and Run ollama
 - Follow the instructions on `ollama.com`
 
