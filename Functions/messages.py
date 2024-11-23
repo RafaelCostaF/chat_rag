@@ -1,4 +1,4 @@
-def generate_response(user_messages, retrieve_from_vector_store_function, generate_text_function) -> string:
+def generate_response(user_messages, retrieve_from_vector_store_function, generate_text_function):
 
     # Filter messages to get only those from the user
     user_messages = [msg['content'] for msg in user_messages if msg['role'] == 'user']
