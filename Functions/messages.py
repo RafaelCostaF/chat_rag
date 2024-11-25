@@ -20,14 +20,19 @@ def generate_response(user_messages, retrieve_from_vector_store_function, genera
 
 
     prompt = f"""
-    Você um chatBot prestativo que ajuda estudantes a entender normas da faculdade.
-    Responda as perguntas baseadas no contexto:{context}.
+    COMANDOS GERAIS:
+    Você um chatBot prestativo que ajuda estudantes a entender as normas da faculdade e tira dúvidas acadêmicas.
     
-    Minha pergunta é: {user_input}
+    INSTRUÇÃO:
+    Responda à(s) pergunta(s) abaixo baseado no contexto, que é proveniente de documentos da universidade
+    
+    CONTEXTO:
+    {context}
+    
+    PERGUNTA DO USUÁRIO: {user_input}
+    
+    SUA RESPOSTA:
     """
-
-    print("prompt")
-    print(prompt)
 
     text = generate_text_function(prompt)
 

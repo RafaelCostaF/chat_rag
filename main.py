@@ -3,6 +3,7 @@ import base64
 from datetime import datetime
 import time
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 import logging
 from pydantic import BaseModel
 from tinydb import TinyDB, Query, where
@@ -118,6 +119,15 @@ async def log_requests(request: Request, call_next):
     response = await call_next(request)
     
     return response
+
+# Liveness probe
+@app.get("/health/liveness", response_class=JSONResponse)
+async def liveness():
+    """
+    Liveness endpoint to check if the app is alive.
+    Returns a 200 status if the app is running.
+    """
+    return {"status": "alive"}
 
 @app.post("/recreate_vector_db")
 def recreate_vector_db():
