@@ -18,8 +18,11 @@ def clear_text(text):
     # Remove zero-width spaces and other similar characters
     cleaned_text = re.sub(r'[\u200b\u200c\u200d\uFEFF]', '', text)
     
-    # Optionally remove excessive whitespace, line breaks, etc.
-    cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
+    # Replace multiple spaces with a single space
+    cleaned_text = re.sub(r'\s+', ' ', cleaned_text)
+    
+    # Replace multiple newlines with a single newline
+    cleaned_text = re.sub(r'\n+', '\n', cleaned_text)
 
     return cleaned_text
 

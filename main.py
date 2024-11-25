@@ -5,7 +5,7 @@ import time
 from fastapi import FastAPI, HTTPException, Request
 import logging
 from pydantic import BaseModel
-from tinydb import TinyDB, Query
+from tinydb import TinyDB, Query, where
 from collections import defaultdict
 from typing import List
 import string

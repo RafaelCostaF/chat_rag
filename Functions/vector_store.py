@@ -10,9 +10,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 VECTOR_STORAGE_PATH = os.getenv("VECTOR_STORAGE_PATH")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
+
 
 # Configure LLM
-Settings.llm = Ollama(model="llama3", request_timeout=360.0)
+Settings.llm = Ollama(model=OLLAMA_MODEL, request_timeout=360.0)
 
 # Configure embedding model
 Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")

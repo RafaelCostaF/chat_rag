@@ -26,7 +26,7 @@ def query_ollama(prompt: str):
     if not ollama_model:
         raise ValueError("OLLAMA_MODEL not found in .env file")
     
-    endpoint = f"{ollama_url}/api/v1/generate"
+    endpoint = f"{ollama_url}"
     headers = {"Content-Type": "application/json"}
     payload = {
         "model": ollama_model,
@@ -36,7 +36,7 @@ def query_ollama(prompt: str):
     try:
         response = requests.post(endpoint, json=payload, headers=headers)
         response.raise_for_status()  # Raise an error for bad status codes
-        return response.json()
+        return extract_text_from_json(response.text)
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
     

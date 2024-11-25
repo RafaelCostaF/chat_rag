@@ -1,3 +1,5 @@
+from Functions.text import clear_text
+
 def generate_response(user_messages, retrieve_from_vector_store_function, generate_text_function):
 
     # Filter messages to get only those from the user
@@ -12,15 +14,20 @@ def generate_response(user_messages, retrieve_from_vector_store_function, genera
     # Step 1: Obter entrada do usuário
     user_input = last_user_message
 
-    context = retrieve_from_vector_store_function(user_input)
+    response_vector_store = retrieve_from_vector_store_function(user_input)
+    context = "\n".join([x.text for x in response_vector_store.source_nodes])
+    context = clear_text(context)
 
-    
+
     prompt = f"""
     Você um chatBot prestativo que ajuda estudantes a entender normas da faculdade.
     Responda as perguntas baseadas no contexto:{context}.
     
     Minha pergunta é: {user_input}
     """
+
+    print("prompt")
+    print(prompt)
 
     text = generate_text_function(prompt)
 

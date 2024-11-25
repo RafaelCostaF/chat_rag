@@ -21,3 +21,11 @@ pip install python-dotenv
 pip install uvicorn
 
 git clone https://github.com/RafaelCostaF/chat_rag.git
+cd chat_rag
+python main.py
+
+
+Instructions to run ollama
+https://ollama.com/blog/ollama-is-now-available-as-an-official-docker-image
+https://www.postman.com/postman-student-programs/ollama-api/documentation/suc47x8/ollama-rest-api
+
