@@ -130,7 +130,7 @@ def recreate_vector_db():
 
 
 @app.post("/chat/{session_id}/start_session")
-def start_session(session_id: str, name: str = Query(...)):
+def start_session(session_id: str, name):
     # Add the user to the database if not exists
     add_user_if_not_exists(name)
     
@@ -149,7 +149,7 @@ def start_session(session_id: str, name: str = Query(...)):
 
 
 @app.get("/chat/sessions")
-def get_sessions(name: str = Query(...)):
+def get_sessions(name: str):
     # Retrieve the user
     user = get_user(name)
     if not user:
@@ -168,7 +168,7 @@ def get_sessions(name: str = Query(...)):
 
 
 @app.post("/chat/{session_id}/send_message_vector_db")
-def send_message_vector_db(session_id: str, message: Message, name: str = Query(...)):
+def send_message_vector_db(session_id: str, message: str, name: str):
      # Retrieve the user
     user = get_user(name)
     if not user:
@@ -196,7 +196,7 @@ def send_message_vector_db(session_id: str, message: Message, name: str = Query(
     return {"response": response}
 
 @app.get("/chat/{session_id}/messages")
-def get_messages(session_id: str, name: str = Query(...)):
+def get_messages(session_id: str, name: str):
     # Retrieve the user
     user = get_user(name)
     if not user:

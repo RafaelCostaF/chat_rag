@@ -11,15 +11,15 @@ from dotenv import load_dotenv
 load_dotenv()
 VECTOR_STORAGE_PATH = os.getenv("VECTOR_STORAGE_PATH")
 
+# Configure LLM
+Settings.llm = Ollama(model="llama3", request_timeout=360.0)
+
+# Configure embedding model
+Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
+
 def recreate_vector_store():
     # Load documents from the specified directory
     documents = SimpleDirectoryReader(VECTOR_STORAGE_PATH).load_data()
-
-    # Configure embedding model
-    Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-base-en-v1.5")
-
-    # Configure LLM
-    Settings.llm = Ollama(model="llama3", request_timeout=360.0)
 
     # Create index from documents
     storage_context = StorageContext.from_defaults(persist_dir="index_storage")

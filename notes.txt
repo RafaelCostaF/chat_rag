@@ -1,1 +1,21 @@
 docker run -it --rm debian:bullseye bash -c "apt-get update && apt-get install -y git && bash"
+
+apt-get install python
+apt-get update
+apt-get install -y software-properties-common
+add-apt-repository ppa:deadsnakes/ppa
+apt-get update
+apt-get install -y python3.9 python3.9-distutils
+ln -sf /usr/bin/python3.9 /usr/bin/python
+
+apt-get install -y python3-pip
+
+pip install numpy
+pip install fastapi
+pip install tinydb
+pip install requests
+pip install llama_index
+pip install llama_index-embeddings-huggingface
+pip install llama_index-llms-ollama
+pip install python-dotenv
+pip install uvicorn
