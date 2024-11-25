@@ -19,3 +19,5 @@ pip install llama_index-embeddings-huggingface
 pip install llama_index-llms-ollama
 pip install python-dotenv
 pip install uvicorn
+
+git clone https://github.com/RafaelCostaF/chat_rag.git

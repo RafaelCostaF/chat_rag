@@ -15,6 +15,7 @@ import re
 
 from Functions.messages import generate_response
 from Functions.vector_store import recreate_vector_store, load_vector_store
+from Functions.ollama import query_ollama
 
 
 # START initial config -------------------------------
@@ -74,19 +75,19 @@ def get_user_session(user, session_id):
 
 # Add a new user if it doesn't exist
 def add_user_if_not_exists(name: str):
-    User = TinyQuery()
+    User = Query()
     user = users_table.get(User.name == name)
     if not user:
         users_table.insert({'name': name})
 
 # Retrieve the user
 def get_user(name: str):
-    User = TinyQuery()
+    User = Query()
     return users_table.get(User.name == name)
 
 # Retrieve a session for a specific user
 def get_user_session(user, session_id):
-    Session = TinyQuery()
+    Session = Query()
     return sessions_table.get((Session.id == session_id) & (Session.user_id == user.doc_id))
 
 # END database settings ---------------------
@@ -179,11 +180,11 @@ def send_message_vector_db(session_id: str, message: str, name: str):
     if not session:
         raise HTTPException(status_code=404, detail="Chat session not found for this user")
     
-    if message.content.strip() == "":
+    if message.strip() == "":
         raise HTTPException(status_code=400, detail="Empty or invalid user message")
     
     # Add user's message to the session
-    session['messages'].append({"role": "user", "content": message.content})
+    session['messages'].append({"role": "user", "content": message})
     
     response = generate_response(session['messages'],query_engine.query,query_ollama)
     
