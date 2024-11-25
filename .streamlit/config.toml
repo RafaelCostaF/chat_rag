@@ -1,0 +1,17 @@
+[theme]
+base = "light"
+primaryColor = "#282670"  # Deep navy blue
+backgroundColor = "#f9f9f9"  # Light grayish white
+
+[theme.colors]
+text = "#282670"  # Text color matching the primary color
+background = "#f9f9f9"  # Background color
+primary = "#282670"  # Primary action or button color
+secondary = "#f9f9f9"  # Secondary color for lighter elements
+accent = "#282670"  # Accent color for highlights
+
+[theme.styles]
+buttonPrimary = { backgroundColor = "#282670", textColor = "#f9f9f9" }
+buttonSecondary = { backgroundColor = "#f9f9f9", textColor = "#282670" }
+header = { backgroundColor = "#282670", textColor = "#f9f9f9" }
+footer = { backgroundColor = "#282670", textColor = "#f9f9f9" }

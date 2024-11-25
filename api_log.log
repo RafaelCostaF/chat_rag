@@ -1,0 +1,9 @@
+2024-11-25 14:04:58,876 - api_logger - INFO - Logging setup complete and writing to ./api_log.log
+2024-11-25 14:19:09,085 - api_logger - INFO - Request for /chat/sessions at 2024-11-25 14:19:09.085699
+2024-11-25 14:21:09,364 - api_logger - INFO - Request for /chat/sessions at 2024-11-25 14:21:09.364629
+2024-11-25 14:21:25,081 - api_logger - INFO - Request for /chat/sessions at 2024-11-25 14:21:25.081291
+2024-11-25 14:21:56,887 - api_logger - INFO - Request for /chat/sessions at 2024-11-25 14:21:56.887020
+2024-11-25 14:22:08,497 - api_logger - INFO - Request for /chat/sessions at 2024-11-25 14:22:08.497361
+2024-11-25 14:22:10,543 - api_logger - INFO - Request for /chat/sessions at 2024-11-25 14:22:10.543907
+2024-11-25 14:22:12,625 - api_logger - INFO - Request for /chat/sessions at 2024-11-25 14:22:12.625091
+2024-11-25 14:22:14,661 - api_logger - INFO - Request for /chat/sessions at 2024-11-25 14:22:14.661517
