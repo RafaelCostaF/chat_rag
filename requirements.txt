@@ -1,0 +1,10 @@
+numpy
+fastapi
+tinydb
+requests
+llama_index
+llama_index-embeddings-huggingface
+llama_index-llms-ollama
+python-dotenv
+uvicorn
+streamlit
